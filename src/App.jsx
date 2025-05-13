@@ -1,15 +1,16 @@
-import{NavbarWithSearch} from "./components/navBar/myNavBar.jsx";
+import{NavbarWithSearch} from "./components/navBar/navbarWithSearch.jsx";
 import Contacts from "./components/contact/contacts.jsx";
 
 const App = () => {
 
     return (
-        <div className="h-screen w-screen flex flex-col bg-slate-700">
-
-            <NavbarWithSearch/>
-            <Contacts></Contacts>
-
+        <div className="min-h-screen w-screen bg-slate-700 flex flex-col">
+            <NavbarWithSearch />
+            <div className="flex-1 overflow-y-auto">
+                <Contacts />
+            </div>
         </div>
+
 
     )
 }
