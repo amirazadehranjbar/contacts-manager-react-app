@@ -1,14 +1,12 @@
-import{NavbarWithSearch} from "./components/navBar/navbarWithSearch.jsx";
-import Contacts from "./components/contact/contacts.jsx";
+import {NavbarWithSearch , Contacts} from "./components"
+import {Outlet} from "react-router-dom";
 
 const App = () => {
 
     return (
         <div className="min-h-screen w-screen bg-slate-700 flex flex-col">
             <NavbarWithSearch />
-            <div className="flex-1 overflow-y-auto">
-                <Contacts />
-            </div>
+            <Outlet />
         </div>
 
 

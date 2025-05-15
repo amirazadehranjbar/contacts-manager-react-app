@@ -1,7 +1,10 @@
+import {Link} from "react-router-dom";
+
 const Contact = ({ contactInfo }) => {
+
     return (
-        <a
-            href="#"
+        <Link
+            to={`/view-contact/${contactInfo.email}`}
             className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-sm p-4
       hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 w-1/2 contain-content"
         >
@@ -17,7 +20,7 @@ const Contact = ({ contactInfo }) => {
                 <p className="text-sm text-gray-400">{contactInfo.email}</p>
                 <p className="text-sm text-gray-400">{contactInfo.phone}</p>
             </div>
-        </a>
+        </Link>
     );
 };
 
