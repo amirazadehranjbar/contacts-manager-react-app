@@ -1,8 +1,6 @@
 import React from "react";
 import {
     Navbar,
-    IconButton,
-    Input,
 } from "@material-tailwind/react";
 
 import {House, UserRound, UserRoundPlus, Search} from "lucide-react";
@@ -17,26 +15,27 @@ const NavbarWithSearch = () => {
                 {/* Left: Navigation buttons */}
                 <div className="flex gap-4">
                     <Link to="/">
-                        <IconButton className="p-3 shadow-slate-900 cursor-pointer">
-                            <House/>
-                            <p className="ml-1">Home</p>
-                        </IconButton>
+                        <div className="flex items-center gap-2 px-4 py-2 bg-slate-600 rounded-md shadow hover:bg-slate-700 transition text-white">
+                            <House className="h-5 w-5" />
+                            <span>Home</span>
+                        </div>
                     </Link>
 
                     <Link to="/contacts">
-                        <IconButton className="p-3 shadow-slate-900 cursor-pointer">
-                            <UserRound/>
-                            <p className="ml-1">Contacts</p>
-                        </IconButton>
+                        <div className="flex items-center gap-2 px-4 py-2 bg-slate-600 rounded-md shadow hover:bg-slate-700 transition text-white">
+                            <UserRound className="h-5 w-5" />
+                            <span>Contacts</span>
+                        </div>
                     </Link>
 
                     <Link to="/add-contact">
-                        <IconButton className="p-3 shadow-slate-900 cursor-pointer">
-                            <UserRoundPlus/>
-                            <p className="ml-1">Add Contact</p>
-                        </IconButton>
+                        <div className="flex items-center gap-2 px-4 py-2 bg-slate-600 rounded-md shadow hover:bg-slate-700 transition text-white">
+                            <UserRoundPlus className="h-5 w-5" />
+                            <span>Add Contact</span>
+                        </div>
                     </Link>
                 </div>
+
 
                 {/* Right: Search input */}
                 <div className="max-w-xs w-full sm:w-auto">
