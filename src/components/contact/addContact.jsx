@@ -1,9 +1,13 @@
 import {useState} from "react";
-import axios from "axios";
 import swal from 'sweetalert';
+import {useDispatch} from "react-redux";
+import {addContact} from "../../features/contactSlice.js";
+import { useNavigate } from 'react-router-dom';
 
 const AddContact = () => {
 
+    const navigate =useNavigate();
+    const dispatch = useDispatch();
     const [newUserData, setNewUserData] = useState({});
 
     const handleInputChange = (e) => {
@@ -18,27 +22,14 @@ const AddContact = () => {
         e.preventDefault();
 
         try {
-
-            await axios.post("http://localhost:8000/contact", newUserData).then((res) => {
-                if (res.status === 201) {
-                    swal({
-                        title: "Contact Added",
-                        text: "Contact added successfully",
-                        icon: "success",
-                        button: "OK",
-                    }).then(() => {
-                        window.history.back();
-                    });
-                } else {
-                    swal({
-                        title: "Error",
-                        text: res.data.message,
-                        icon: "error",
-                        button: "OK",
-                    });
-                }
+            await dispatch(addContact(newUserData)).unwrap();
+            await swal({
+                title: "Success",
+                text: "Contact added successfully",
+                icon: "success",
+                button: "OK",
             });
-
+            navigate('/contacts');
         } catch (err) {
             console.log(err);
             await swal({

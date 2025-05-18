@@ -1,13 +1,8 @@
-import {configureStore} from "@reduxjs/toolkit";
-import {addContact, setContactInfo, setError, setLoading} from "../features/contactSlice.js";
+import { configureStore } from '@reduxjs/toolkit';
+import contactReducer from '../features/contactSlice';
 
 export const store = configureStore({
     reducer: {
-        setContactInfo: setContactInfo,
-        addContact: addContact,
-        setLoading: setLoading,
-        setError: setError,
+        contact: contactReducer,
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
-

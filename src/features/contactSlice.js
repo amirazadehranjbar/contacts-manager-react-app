@@ -1,27 +1,73 @@
-import {createSlice} from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
+//region *************** createAsyncThunk: fetchContacts
+export const fetchContacts = createAsyncThunk(
+    'contacts/fetchContacts',
+    async (_, thunkAPI) => {
+        try {
+            const response = await fetch('http://localhost:8000/contact');
+            return await response.json();
+        } catch (error) {
+            return thunkAPI.rejectWithValue(`Failed to fetch contacts - ${error.message}`);
+        }
+    }
+);
+//endregion
+
+//region *************** createAsyncThunk: addContact
+
+export const addContact = createAsyncThunk(
+    'contacts/addContact',
+    async (newContact, thunkAPI) => {
+        try {
+            const response = await fetch('http://localhost:8000/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newContact),
+            });
+            return await response.json();
+        } catch (error) {
+            return thunkAPI.rejectWithValue(`Failed to add contact - ${error.message}`);
+        }
+    }
+);
+
+//endregion
+
+
+
+
+
+
+
+
+// ********************************************************************************************************************** //
 
 const ContactSlice = createSlice({
-    name: "contact",
+    name: 'contact',
     initialState: {
         contactInfo: [],
         loading: false,
         error: null,
     },
-    reducers: {
-        setContactInfo: (state, action) => {
-            state.contactInfo = action.payload;
-        },
-        addContact: (state, action) => {
-            state.contactInfo.push(action.payload);
-        },
-        setLoading: (state, action) => {
-            state.loading = action.payload;
-        },
-        setError: (state, action) => {
-            state.error = action.payload;
-        },
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchContacts.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(fetchContacts.fulfilled, (state, action) => {
+                state.loading = false;
+                state.contactInfo = action.payload;
+            })
+            .addCase(fetchContacts.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload || action.error.message;
+            });
     },
 });
 
-export const {setContactInfo, addContact, setLoading, setError} = ContactSlice.actions;
 export default ContactSlice.reducer;

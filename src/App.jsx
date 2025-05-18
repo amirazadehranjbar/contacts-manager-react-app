@@ -8,9 +8,7 @@ const App = () => {
             <NavbarWithSearch />
             <Outlet />
         </div>
-
-
     )
-}
+};
 
 export default App

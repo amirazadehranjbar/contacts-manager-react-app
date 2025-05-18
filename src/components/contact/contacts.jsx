@@ -1,28 +1,20 @@
+// Using Redux Toolkit to fetch and display contacts
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import Contact from '../contact/contact.jsx';
+import Contact from './contact.jsx';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchContacts } from '../../features/contactSlice.js';
 
 const Contacts = () => {
-    const [contacts, setContacts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
+    const dispatch = useDispatch();
+
+    const { contactInfo, loading, error } = useSelector((state) => state.contact);
 
     useEffect(() => {
-        const fetchContacts = async () => {
-            try {
-                const res = await axios.get('http://localhost:8000/contact');
-                setContacts(res.data);
-            } catch (err) {
-                setError(`Failed to fetch contacts - ${err.message}`);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchContacts();
-    }, []);
+        dispatch(fetchContacts());
+    }, [dispatch]);
 
-    const filtered = contacts.filter(c =>
+    const filtered = contactInfo.filter(c =>
         c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         c.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
         c.phone.toLowerCase().includes(searchTerm.toLowerCase())

@@ -24,6 +24,8 @@ contactRoutes.post('/contact', async (req, res, next) => {
 
         const contact = new ContactModel({ name, email, phone, image });
 
+        console.log(contact);
+
         await contact.save();
 
         return res.status(201).json(contact);

@@ -15,7 +15,7 @@ createRoot(document.getElementById('root')).render(
                 <Routes>
                     <Route path="/" element={<App/>}>
                         <Route path="/contacts" element={<Contacts/>}/>
-                        <Route path="/view-contact/:email" element={<ViewContact/>}/>
+                        <Route path="/view-contact" element={<ViewContact/>}/>
                         <Route path="/add-contact" element={<AddContact/>}/>
                     </Route>
 
