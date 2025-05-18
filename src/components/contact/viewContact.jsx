@@ -1,5 +1,5 @@
 import {useLocation} from "react-router-dom";
-import BlurredFooterCard from "../cards/blurredFooterCard.jsx";
+import InteractiveContactCard from "../cards/interactiveContactCard.jsx";
 
 
 const ViewContact = () => {
@@ -10,12 +10,14 @@ const ViewContact = () => {
     return (
         <div className="w-full h-[calc(100vh-64px)] flex justify-center items-center bg-slate-700 overflow-y-auto">
             <div className="flex justify-center items-center">
-                <BlurredFooterCard
-                    contactEmail={contactInfo.email}
-                    contactImage={contactInfo.image}
-                    contactName={contactInfo.name}
-                    contactPhone={contactInfo.phone}
-                />
+
+                <InteractiveContactCard
+                    name={contactInfo.name}
+                    image={contactInfo.image}
+                    phone={contactInfo.phone}
+                    email={contactInfo.email}
+                ></InteractiveContactCard>
+
             </div>
         </div>
     );

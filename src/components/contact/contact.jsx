@@ -1,5 +1,4 @@
 import {Link} from "react-router-dom";
-import {UserPen,UserX} from "lucide-react";
 
 const Contact = ({ contactInfo }) => {
     return (
@@ -10,17 +9,13 @@ const Contact = ({ contactInfo }) => {
                     src={contactInfo.image}
                     alt=""
                 />
-                <div className="absolute top-2 right-2 flex space-x-2">
-                    <UserPen className="w-5 h-5 text-white bg-blue-500 hover:bg-blue-600 rounded-full p-1 cursor-pointer" />
-                    <UserX className="w-5 h-5 text-white bg-red-500 hover:bg-red-600 rounded-full p-1 cursor-pointer" />
-                </div>
             </div>
             <div className="text-center mt-4">
                 <h5 className="text-xl font-bold text-gray-900 dark:text-white">
                     {contactInfo.name}
                 </h5>
             </div>
-            <div className="text-center mt-2">
+            <div className="text-center text-slate-900 font-mono mt-2">
                 <Link
                     to={"/view-contact/"}
                     state={{ contactInfo: contactInfo }}
